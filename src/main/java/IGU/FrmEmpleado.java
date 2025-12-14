@@ -28,8 +28,13 @@ public class FrmEmpleado extends JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        String[] column = {"Nombre", "Edad", "Salario", "Bono"};
-        modelo = new DefaultTableModel(column, 0);
+        String[] column = {"Nombre", "Edad", "Salario", "Bono", "Salario Mensual", "Salario Anual"};
+        modelo = new DefaultTableModel(column, 0){
+            @Override
+            public boolean isCellEditable(int row, int column){ // Evitar Edicion Directa
+                return false;
+            }
+        };
         tabla.setModel(modelo);
     }
 
