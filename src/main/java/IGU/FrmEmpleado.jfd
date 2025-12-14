@@ -1,0 +1,101 @@
+﻿JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:57:p, par l {comp label3::l:p::p, comp label2::t:p::p, comp label1::t:p::p, comp label4::t:p::p, comp label5::t:p::p}, space s:::p, par t {comp txtNombre:::p::p, comp txtEdad:::p::p, comp txtSalario::t:p::p, comp txtIndice:::p::p, comp txtBono:::p::p}}, seq t {space :p:67:p, par l {comp btnAgregar::t:p:168:p, comp btnModificar::t:p:168:p, comp btnBuscar::t:p:168:p, comp btnEliminar::t:p:168:p}}}, space :p:57:p, comp scrollPane1:::p:188:p, space u:::p, comp scrollPane2::::512:x, space :::p}, seq {space :::p, comp separator1::::1004:x}, seq t {space :0:356:x, comp label6:::p::p, space :p:319:p}}"
+			"$verticalGroup": "par l {seq l {space :p:27:p, comp label6:::p::p, space :p:26:p, comp separator1:::p:15:p, par l {seq {space :p:51:p, par b {comp txtNombre::b:p::p, comp label1::b:p::p}, space s:::p, par b {comp txtEdad::b:p::p, comp label2::b:p:16:p}, space :p:10:p, par b {comp label3::b:p::p, comp txtSalario::b:p::p}, space s:::p, par l {seq l {comp txtBono:::p::p, space s:::p, par b {comp txtIndice::b:p::p, comp label5::b:p::p}}, comp label4:::p::p}, space ::38:x, comp btnAgregar:::p::p, space s:::p, comp btnModificar:::p::p, space u:::p, comp btnBuscar:::p::p, space u:::p, comp btnEliminar:::p::p, space ::17:x}, seq l {space :::p, par l {comp scrollPane1:::p:465:p, comp scrollPane2:::p:465:p}, space ::17:x}}}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Nombre:"
+				"font": &Font0 new java.awt.Font( "CaskaydiaMono NF SemiBold", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Edad:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Salario:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Bono:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Indice:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtNombre"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEdad"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSalario"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtBono"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtIndice"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "txtArea"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAgregar"
+				"text": "Agregar"
+				"font": &Font1 new java.awt.Font( "CaskaydiaMono NF SemiBold", 0, 18 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAgregar", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnModificar"
+				"text": "Modificar"
+				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnModificar", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnEliminar"
+				"text": "Eliminar"
+				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnEliminar", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnBuscar"
+				"text": "Buscar"
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Gestor Empleados"
+				"font": new java.awt.Font( "CaskaydiaMono NF SemiBold", 1, 36 )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tabla"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector, new java.util.Vector, new java.util.Vector, new java.util.Vector )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 184, 10 )
+			"size": new java.awt.Dimension( 810, 510 )
+		} )
+	}
+}
