@@ -29,6 +29,10 @@ public class FrmEmpleado extends JFrame {
         setResizable(false);
     }
 
+    private int Int(String txt){
+        return Integer.parseInt(txt.trim());
+    }
+
     private boolean vacios(){
         if(txtNombre.getText().isEmpty() || txtEdad.getText().isEmpty() || txtSalario.getText().isEmpty() || txtBono.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Porfavor, Debe Ingresar Los Campos Requeridos", "Campos Vacios",
@@ -39,9 +43,16 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void modificar(){
-        int indice = Integer.parseInt(txtIndice.getText().trim());
+        String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
+        int indice = Int(indiceBuscar);
+
+        if(indice < 0 || indice >= listEmpleados.size()){
+            JOptionPane.showMessageDialog(this, "Indice invalido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         String nombre = txtNombre.getText();
-        int edad = Integer.parseInt(txtEdad.getText().trim());
+        int edad = Int(txtEdad.getText());
         double salario = Double.parseDouble(txtSalario.getText().trim());
         double bono = Double.parseDouble(txtBono.getText().trim());
 
@@ -70,7 +81,7 @@ public class FrmEmpleado extends JFrame {
     private void mostrar(){
          txtArea.append("Lista de Empleados: ["+listEmpleados.size()+"]\n");
         for (int i = 0; i < listEmpleados.size(); i++) {
-            txtArea.append("[" + i + "]: " + listEmpleados.get(i).toString() + "\n");
+            txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n");
         }
     }
     
