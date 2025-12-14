@@ -52,8 +52,34 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void modificar(){
-        String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
-        int indice = Int(indiceBuscar);
+        int indice = -1;
+        int opcion = JOptionPane.showConfirmDialog(null, "Desea Modificar Empleado?", "Modificar Empleado",
+                JOptionPane.YES_NO_OPTION);
+
+        if(opcion == JOptionPane.NO_OPTION){
+            return;
+        }
+
+        String elegir = JOptionPane.showInputDialog(this, "Ingrese 1 para modificar por Indice o 2 para modificar por Nombre: ");
+
+        switch(elegir){
+            case "1" -> {
+                String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
+                indice = Int(indiceBuscar);
+            }
+
+            case "2" -> { int fila = tabla.getSelectedRow();
+                if(fila == -1){
+                    JOptionPane.showMessageDialog(this, "No Ha Seleccionado Ningun Empleado en la Tabla", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+            }
+
+        }
+
+
+
 
         if(indice < 0 || indice >= listEmpleados.size()){
             JOptionPane.showMessageDialog(this, "Indice invalido", "Error", JOptionPane.ERROR_MESSAGE);
