@@ -52,6 +52,11 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void modificar(){
+        if(listEmpleados.isEmpty()){
+            JOptionPane.showMessageDialog(this, "La Lista de Empleados Esta Vacia", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         int fila = -1;
         boolean indiceE = false;
         boolean filaE = false;
@@ -123,6 +128,11 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void mostrar(){
+        if(listEmpleados.isEmpty()) {
+            txtArea.append("La lista de empleados esta vacia.\n");
+            return;
+        }
+
          txtArea.append("Lista de Empleados: ["+listEmpleados.size()+"]\n");
         for (int i = 0; i < listEmpleados.size(); i++) {
             txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n");
