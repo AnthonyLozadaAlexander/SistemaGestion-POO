@@ -52,6 +52,9 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void modificar(){
+        int fila = -1;
+        boolean indiceE = false;
+        boolean filaE = false;
         int indice = -1;
         int opcion = JOptionPane.showConfirmDialog(null, "Desea Modificar Empleado?", "Modificar Empleado",
                 JOptionPane.YES_NO_OPTION);
@@ -66,20 +69,19 @@ public class FrmEmpleado extends JFrame {
             case "1" -> {
                 String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
                 indice = Int(indiceBuscar);
+                indiceE = true;
             }
 
-            case "2" -> { int fila = tabla.getSelectedRow();
+            case "2" -> { fila = tabla.getSelectedRow();
                 if(fila == -1){
                     JOptionPane.showMessageDialog(this, "No Ha Seleccionado Ningun Empleado en la Tabla", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                filaE = true;
 
             }
 
         }
-
-
-
 
         if(indice < 0 || indice >= listEmpleados.size()){
             JOptionPane.showMessageDialog(this, "Indice invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -91,7 +93,14 @@ public class FrmEmpleado extends JFrame {
         double salario = Double.parseDouble(txtSalario.getText().trim());
         double bono = Double.parseDouble(txtBono.getText().trim());
 
-        listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
+        if(indiceE){
+            listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
+        }
+
+        if(filaE){
+            listEmpleados.set(fila, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
+        }
+
     }
 
     private void limpiar(){
