@@ -11,6 +11,10 @@ public class Empleado {
         this.salarioBase = salarioBase;
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+
     public double getSalarioBase() {
         return salarioBase;
     }
