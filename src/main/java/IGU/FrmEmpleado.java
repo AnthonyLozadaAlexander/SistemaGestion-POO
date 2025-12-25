@@ -181,7 +181,11 @@ public class FrmEmpleado extends JFrame {
         String buscar = JOptionPane.showInputDialog(this, "Ingrese El Nombre Del Empleado A Buscar: ");
         for (int i = 0; i < listEmpleados.size();i++) {
             if(buscar.equalsIgnoreCase(listEmpleados.get(i).getNombre())){
-
+                tabla.setRowSelectionInterval(i,i);
+                tabla.scrollRectToVisible(tabla.getCellRect(i, 0, true));
+                JOptionPane.showMessageDialog(this, "Empleado: " + listEmpleados.get(i).mostrarInfo(), "Empleado " +
+                        "Encontrado, Fila["+i+"]", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
 
         }
