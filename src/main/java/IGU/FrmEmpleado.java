@@ -120,6 +120,19 @@ public class FrmEmpleado extends JFrame {
         int edad = Integer.parseInt(txtEdad.getText().trim());
         double salario = Double.parseDouble(txtSalario.getText().trim());
         double bono = Double.parseDouble(txtBono.getText().trim());
+
+        if(edad < 18){
+            JOptionPane.showMessageDialog(this, "La edad debe ser mayor o igual a 18 años", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        for (int i = 0; i < listEmpleados.size(); i++) {
+            if(nombre.equalsIgnoreCase(listEmpleados.get(i).getNombre())){
+                JOptionPane.showMessageDialog(this, "El empleado ya existe en la la base de registros", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
         listEmpleados.add(new EmpleadoTiempoCompleto(nombre, edad, salario, bono));
         txtArea.append("Empleado agregado: " + nombre + "\n");
         txtArea.append("Total empleados: " + listEmpleados.size() + "\n");
@@ -134,7 +147,7 @@ public class FrmEmpleado extends JFrame {
 
          txtArea.append("\nLista de Empleados: ["+listEmpleados.size()+"]\n");
         for (int i = 0; i < listEmpleados.size(); i++) {
-            txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n");
+            txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n\n");
         }
     }
     
