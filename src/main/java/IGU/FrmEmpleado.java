@@ -6,6 +6,8 @@ package IGU;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -205,6 +207,14 @@ public class FrmEmpleado extends JFrame {
         }
     }
 
+    private void tablaClick(MouseEvent e) {
+        int row = tabla.getSelectedRow();
+        txtNombre.setText(modelo.getValueAt(row, 0).toString());
+        txtEdad.setText(modelo.getValueAt(row, 1).toString());
+        txtSalario.setText(modelo.getValueAt(row, 2).toString());
+        txtBono.setText(modelo.getValueAt(row, 3).toString());
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Educational license - Daniel Sanchez (Anthony Lozada)
@@ -307,6 +317,12 @@ public class FrmEmpleado extends JFrame {
         //======== scrollPane2 ========
         {
             scrollPane2.setName("scrollPane2");
+            scrollPane2.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    tablaClick(e);
+                }
+            });
 
             //---- tabla ----
             tabla.setModel(new DefaultTableModel());
