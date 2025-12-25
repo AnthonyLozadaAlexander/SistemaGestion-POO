@@ -135,6 +135,18 @@ public class FrmEmpleado extends JFrame {
             }
         }
 
+        Object[] row = {
+                nombre,
+                edad,
+                salario,
+                bono,
+                salario,
+                salario + bono
+        };
+
+        modelo.addRow(row);
+        tabla.setModel(modelo);
+
         listEmpleados.add(new EmpleadoTiempoCompleto(nombre, edad, salario, bono));
         txtArea.append("Empleado agregado: " + nombre + "\n");
         txtArea.append("Total empleados: " + listEmpleados.size() + "\n");
