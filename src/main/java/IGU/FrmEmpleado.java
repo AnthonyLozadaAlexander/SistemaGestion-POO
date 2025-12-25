@@ -185,6 +185,7 @@ public class FrmEmpleado extends JFrame {
                 tabla.scrollRectToVisible(tabla.getCellRect(i, 0, true));
                 JOptionPane.showMessageDialog(this, "Empleado: " + listEmpleados.get(i).mostrarInfo(), "Empleado " +
                         "Encontrado, Fila["+i+"]", JOptionPane.INFORMATION_MESSAGE);
+
                 return;
             }
 
