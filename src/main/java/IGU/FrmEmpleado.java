@@ -172,11 +172,13 @@ public class FrmEmpleado extends JFrame {
         }
         agregar();
         mostrar();
+        limpiar();
     }
 
     private void btnModificar(ActionEvent e) {
         modificar();
         mostrar();
+        limpiar();
 
     }
 
