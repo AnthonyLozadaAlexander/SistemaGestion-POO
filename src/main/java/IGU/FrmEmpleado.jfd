@@ -72,6 +72,7 @@ new FormModel {
 				name: "btnBuscar"
 				"text": "Buscar"
 				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBuscar", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label6"
