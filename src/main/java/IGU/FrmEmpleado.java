@@ -132,7 +132,7 @@ public class FrmEmpleado extends JFrame {
             return;
         }
 
-         txtArea.append("Lista de Empleados: ["+listEmpleados.size()+"]\n");
+         txtArea.append("\nLista de Empleados: ["+listEmpleados.size()+"]\n");
         for (int i = 0; i < listEmpleados.size(); i++) {
             txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n");
         }
@@ -179,6 +179,12 @@ public class FrmEmpleado extends JFrame {
         }
 
         String buscar = JOptionPane.showInputDialog(this, "Ingrese El Nombre Del Empleado A Buscar: ");
+        for (int i = 0; i < listEmpleados.size();i++) {
+            if(buscar.equalsIgnoreCase(listEmpleados.get(i).getNombre())){
+
+            }
+
+        }
     }
 
     private void initComponents() {
