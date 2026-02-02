@@ -10,11 +10,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 import com.formdev.flatlaf.FlatLightLaf;
 
 import Clases.Empleado;
 import Clases.EmpleadoTiempoCompleto;
 import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class FrmEmpleado extends JFrame {
     private ArrayList<Empleado> listEmpleados = new ArrayList<>();
     private DefaultTableModel modelo;
+
     public FrmEmpleado() {
         initComponents();
         setLocationRelativeTo(null);
@@ -33,23 +36,23 @@ public class FrmEmpleado extends JFrame {
         configurarTabla();
     }
 
-    private void configurarTabla(){
+    private void configurarTabla() {
         String[] column = {"Nombre", "Edad", "Salario", "Bono", "Salario Mensual", "Salario Anual"};
-        modelo = new DefaultTableModel(column, 0){
+        modelo = new DefaultTableModel(column, 0) {
             @Override
-            public boolean isCellEditable(int row, int column){ // Evitar Edicion Directa
+            public boolean isCellEditable(int row, int column) { // Evitar Edicion Directa
                 return false;
             }
         };
         tabla.setModel(modelo);
     }
 
-    private int Int(String txt){
+    private int Int(String txt) {
         return Integer.parseInt(txt.trim());
     }
 
-    private boolean vacios(){
-        if(txtNombre.getText().isEmpty() || txtEdad.getText().isEmpty() || txtSalario.getText().isEmpty() || txtBono.getText().isEmpty()){
+    private boolean vacios() {
+        if (txtNombre.getText().isEmpty() || txtEdad.getText().isEmpty() || txtSalario.getText().isEmpty() || txtBono.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Porfavor, Debe Ingresar Los Campos Requeridos", "Campos Vacios",
                     JOptionPane.ERROR_MESSAGE);
             return true;
@@ -57,8 +60,8 @@ public class FrmEmpleado extends JFrame {
         return false;
     }
 
-    private void modificar(){
-        if(listEmpleados.isEmpty()){
+    private void modificar() {
+        if (listEmpleados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "La Lista de Empleados Esta Vacia", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -70,21 +73,22 @@ public class FrmEmpleado extends JFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "Desea Modificar Empleado?", "Modificar Empleado",
                 JOptionPane.YES_NO_OPTION);
 
-        if(opcion == JOptionPane.NO_OPTION){
+        if (opcion == JOptionPane.NO_OPTION) {
             return;
         }
 
         String elegir = JOptionPane.showInputDialog(this, "Ingrese 1 para modificar por Indice o 2 para modificar por Nombre: ");
 
-        switch(elegir){
+        switch (elegir) {
             case "1" -> {
                 String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
                 indice = Int(indiceBuscar);
                 indiceE = true;
             }
 
-            case "2" -> { fila = tabla.getSelectedRow();
-                if(fila == -1){
+            case "2" -> {
+                fila = tabla.getSelectedRow();
+                if (fila == -1) {
                     JOptionPane.showMessageDialog(this, "No Ha Seleccionado Ningun Empleado en la Tabla", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -94,7 +98,7 @@ public class FrmEmpleado extends JFrame {
 
         }
 
-        if(indice < 0 || indice >= listEmpleados.size()){
+        if (indice < 0 || indice >= listEmpleados.size()) {
             JOptionPane.showMessageDialog(this, "Indice invalido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -104,36 +108,36 @@ public class FrmEmpleado extends JFrame {
         double salario = Double.parseDouble(txtSalario.getText().trim());
         double bono = Double.parseDouble(txtBono.getText().trim());
 
-        if(indiceE){
+        if (indiceE) {
             listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
         }
 
-        if(filaE){
+        if (filaE) {
             listEmpleados.set(fila, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
         }
 
     }
 
-    private void limpiar(){
+    private void limpiar() {
         txtNombre.setText("");
         txtEdad.setText("");
         txtSalario.setText("");
         txtBono.setText("");
     }
 
-    private void agregar(){
+    private void agregar() {
         String nombre = txtNombre.getText();
         int edad = Integer.parseInt(txtEdad.getText().trim());
         double salario = Double.parseDouble(txtSalario.getText().trim());
         double bono = Double.parseDouble(txtBono.getText().trim());
 
-        if(edad < 18){
+        if (edad < 18) {
             JOptionPane.showMessageDialog(this, "La edad debe ser mayor o igual a 18 años", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         for (int i = 0; i < listEmpleados.size(); i++) {
-            if(nombre.equalsIgnoreCase(listEmpleados.get(i).getNombre())){
+            if (nombre.equalsIgnoreCase(listEmpleados.get(i).getNombre())) {
                 JOptionPane.showMessageDialog(this, "El empleado ya existe en la la base de registros", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -157,21 +161,21 @@ public class FrmEmpleado extends JFrame {
 
     }
 
-    private void mostrar(){
-        if(listEmpleados.isEmpty()) {
+    private void mostrar() {
+        if (listEmpleados.isEmpty()) {
             txtArea.append("La lista de empleados esta vacia.\n");
             return;
         }
 
-         txtArea.append("\nLista de Empleados: ["+listEmpleados.size()+"]\n");
+        txtArea.append("\nLista de Empleados: [" + listEmpleados.size() + "]\n");
         for (int i = 0; i < listEmpleados.size(); i++) {
             txtArea.append("[" + i + "]: " + listEmpleados.get(i).mostrarInfo() + "\n\n");
         }
     }
-    
+
 
     private void btnAgregar(ActionEvent e) {
-        if(vacios()){
+        if (vacios()) {
             return;
         }
         agregar();
@@ -186,10 +190,10 @@ public class FrmEmpleado extends JFrame {
 
     }
 
-    private void Eliminar(){
+    private void Eliminar() {
         int index = tabla.getSelectedRow();
 
-        if(index < 0){
+        if (index < 0) {
             JOptionPane.showMessageDialog(this, "Indice Invalido", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -209,19 +213,19 @@ public class FrmEmpleado extends JFrame {
         mostrar();
     }
 
-    private void buscar(){
-        if(listEmpleados.isEmpty()){
+    private void buscar() {
+        if (listEmpleados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "La lista de empleados esta vacia", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         String buscar = JOptionPane.showInputDialog(this, "Ingrese El Nombre Del Empleado A Buscar: ");
-        for (int i = 0; i < listEmpleados.size();i++) {
-            if(buscar.equalsIgnoreCase(listEmpleados.get(i).getNombre())){
-                tabla.setRowSelectionInterval(i,i);
+        for (int i = 0; i < listEmpleados.size(); i++) {
+            if (buscar.equalsIgnoreCase(listEmpleados.get(i).getNombre())) {
+                tabla.setRowSelectionInterval(i, i);
                 tabla.scrollRectToVisible(tabla.getCellRect(i, 0, true));
                 JOptionPane.showMessageDialog(this, "Empleado: " + listEmpleados.get(i).mostrarInfo(), "Empleado " +
-                        "Encontrado, Fila["+i+"]", JOptionPane.INFORMATION_MESSAGE);
+                        "Encontrado, Fila[" + i + "]", JOptionPane.INFORMATION_MESSAGE);
 
                 return;
             }
