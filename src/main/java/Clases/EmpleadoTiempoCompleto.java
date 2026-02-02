@@ -17,6 +17,6 @@ public class EmpleadoTiempoCompleto extends Empleado {
 
     @Override
     public String mostrarInfo() {
-        return super.mostrarInfo() + "\n Bono Anual: " + bonoAnual + "\n Salario Anual: " + calcularSalarioAnual();
+        return super.mostrarInfo() + "\n Bono Anual: " + getBonoAnual() + "\n Salario Anual: " + calcularSalarioAnual();
     }
 }
