@@ -266,6 +266,7 @@ public class FrmEmpleado extends JFrame {
         label6 = new JLabel();
         scrollPane2 = new JScrollPane();
         tabla = new JTable();
+        cboTipoEmpleado = new JComboBox<>();
 
         //======== this ========
         setName("this");
@@ -361,6 +362,15 @@ public class FrmEmpleado extends JFrame {
             scrollPane2.setViewportView(tabla);
         }
 
+        //---- cboTipoEmpleado ----
+        cboTipoEmpleado.setModel(new DefaultComboBoxModel<>(new String[] {
+            "Seleccione",
+            "EmpleadoTiempoCompleto",
+            "EmpleadoMedioTiempo"
+        }));
+        cboTipoEmpleado.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 16));
+        cboTipoEmpleado.setName("cboTipoEmpleado");
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -369,9 +379,9 @@ public class FrmEmpleado extends JFrame {
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
                                     .addGroup(contentPaneLayout.createParallelGroup()
                                         .addComponent(label3)
                                         .addComponent(label2, GroupLayout.Alignment.TRAILING)
@@ -382,19 +392,17 @@ public class FrmEmpleado extends JFrame {
                                         .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtBono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(30, 30, 30))
-                                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnAgregar, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnEliminar, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)))
+                                        .addComponent(txtBono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboTipoEmpleado, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnModificar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
-                            .addContainerGap())
+                            .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                            .addGap(12, 12, 12))
                         .addComponent(separator1, GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)))
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addContainerGap(348, Short.MAX_VALUE)
@@ -408,9 +416,11 @@ public class FrmEmpleado extends JFrame {
                     .addComponent(label6)
                     .addGap(18, 18, 18)
                     .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addGroup(GroupLayout.Alignment.LEADING, contentPaneLayout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label1))
@@ -426,18 +436,17 @@ public class FrmEmpleado extends JFrame {
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addComponent(txtBono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label4))
-                            .addGap(33, 33, 33)
+                            .addGap(27, 27, 27)
                             .addComponent(btnAgregar)
                             .addGap(18, 18, 18)
                             .addComponent(btnModificar)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnBuscar)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnEliminar))
-                        .addGroup(contentPaneLayout.createParallelGroup()
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(100, Short.MAX_VALUE))
+                            .addComponent(btnEliminar)
+                            .addGap(18, 18, 18)
+                            .addComponent(cboTipoEmpleado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(88, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -464,5 +473,6 @@ public class FrmEmpleado extends JFrame {
     private JLabel label6;
     private JScrollPane scrollPane2;
     private JTable tabla;
+    private JComboBox<String> cboTipoEmpleado;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
