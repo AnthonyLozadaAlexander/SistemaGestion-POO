@@ -37,7 +37,7 @@ public class FrmEmpleado extends JFrame {
     }
 
     private void configurarTabla() {
-        String[] column = {"Nombre", "Edad", "Salario", "Bono", "Salario Mensual", "Salario Anual"};
+        String[] column = {"Nombre", "Edad", "Salario", "Bono/Horas", "Salario Mensual", "Salario Anual"};
         modelo = new DefaultTableModel(column, 0) {
             @Override
             public boolean isCellEditable(int row, int column) { // Evitar Edicion Directa
@@ -52,7 +52,7 @@ public class FrmEmpleado extends JFrame {
     }
 
     private boolean vacios() {
-        if (txtNombre.getText().isEmpty() || txtEdad.getText().isEmpty() || txtSalario.getText().isEmpty() || txtBono.getText().isEmpty()) {
+        if (txtNombre.getText().isEmpty() || txtEdad.getText().isEmpty() || txtSalario.getText().isEmpty() || txtCampoOp.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Porfavor, Debe Ingresar Los Campos Requeridos", "Campos Vacios",
                     JOptionPane.ERROR_MESSAGE);
             return true;
@@ -106,7 +106,7 @@ public class FrmEmpleado extends JFrame {
         String nombre = txtNombre.getText();
         int edad = Int(txtEdad.getText());
         double salario = Double.parseDouble(txtSalario.getText().trim());
-        double bono = Double.parseDouble(txtBono.getText().trim());
+        double bono = Double.parseDouble(txtCampoOp.getText().trim());
 
         if (indiceE) {
             listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
@@ -122,14 +122,14 @@ public class FrmEmpleado extends JFrame {
         txtNombre.setText("");
         txtEdad.setText("");
         txtSalario.setText("");
-        txtBono.setText("");
+        txtCampoOp.setText("");
     }
 
     private void agregar() {
         String nombre = txtNombre.getText();
         int edad = Integer.parseInt(txtEdad.getText().trim());
         double salario = Double.parseDouble(txtSalario.getText().trim());
-        double bono = Double.parseDouble(txtBono.getText().trim());
+        double bono = Double.parseDouble(txtCampoOp.getText().trim());
 
         if (edad < 18) {
             JOptionPane.showMessageDialog(this, "La edad debe ser mayor o igual a 18 años", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -238,11 +238,25 @@ public class FrmEmpleado extends JFrame {
         txtNombre.setText(modelo.getValueAt(row, 0).toString());
         txtEdad.setText(modelo.getValueAt(row, 1).toString());
         txtSalario.setText(modelo.getValueAt(row, 2).toString());
-        txtBono.setText(modelo.getValueAt(row, 3).toString());
+        txtCampoOp.setText(modelo.getValueAt(row, 3).toString());
     }
 
     private void btnBuscar(ActionEvent e) {
         buscar();
+    }
+
+    private void controlEmpleados(){
+        boolean tipo = cboTipoEmpleado.getSelectedItem().toString().equals("EmpleadoTiempoCompleto");
+        if(tipo){
+            label4.setText("Bono: ");
+        }
+        else{
+            label4.setText("Horas Trabajadas");
+        }
+    }
+
+    private void cboTipoEmpleado(ActionEvent e) {
+        controlEmpleados();
     }
 
     private void initComponents() {
@@ -255,7 +269,7 @@ public class FrmEmpleado extends JFrame {
         txtNombre = new JTextField();
         txtEdad = new JTextField();
         txtSalario = new JTextField();
-        txtBono = new JTextField();
+        txtCampoOp = new JTextField();
         scrollPane1 = new JScrollPane();
         txtArea = new JTextArea();
         btnAgregar = new JButton();
@@ -301,8 +315,8 @@ public class FrmEmpleado extends JFrame {
         //---- txtSalario ----
         txtSalario.setName("txtSalario");
 
-        //---- txtBono ----
-        txtBono.setName("txtBono");
+        //---- txtCampoOp ----
+        txtCampoOp.setName("txtCampoOp");
 
         //======== scrollPane1 ========
         {
@@ -370,44 +384,44 @@ public class FrmEmpleado extends JFrame {
         }));
         cboTipoEmpleado.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 16));
         cboTipoEmpleado.setName("cboTipoEmpleado");
+        cboTipoEmpleado.addActionListener(e -> cboTipoEmpleado(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(368, Short.MAX_VALUE)
+                    .addComponent(label6)
+                    .addGap(364, 364, 364))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(label3)
-                                        .addComponent(label2, GroupLayout.Alignment.TRAILING)
-                                        .addComponent(label1, GroupLayout.Alignment.TRAILING)
-                                        .addComponent(label4, GroupLayout.Alignment.TRAILING))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtBono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 16, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(label2)
+                                .addComponent(label3)
+                                .addComponent(label4)
                                 .addComponent(cboTipoEmpleado, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnAgregar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnModificar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnBuscar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAgregar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCampoOp)
+                                .addComponent(txtSalario)
+                                .addComponent(txtEdad)
+                                .addComponent(txtNombre))
+                            .addGap(50, 50, 50)
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                            .addGap(12, 12, 12))
-                        .addComponent(separator1, GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)))
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(348, Short.MAX_VALUE)
-                    .addComponent(label6)
-                    .addGap(327, 327, 327))
+                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 598, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(separator1, GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(label1)
+                            .addContainerGap(969, Short.MAX_VALUE))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -416,27 +430,27 @@ public class FrmEmpleado extends JFrame {
                     .addComponent(label6)
                     .addGap(18, 18, 18)
                     .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(label1)
+                    .addGap(4, 4, 4)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 465, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane2)
+                        .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label1))
-                            .addGap(18, 18, 18)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label3)
-                                .addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(txtBono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label4))
-                            .addGap(27, 27, 27)
+                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+                            .addGap(13, 13, 13)
+                            .addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(label3)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                            .addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(label4)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCampoOp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnAgregar)
                             .addGap(18, 18, 18)
                             .addComponent(btnModificar)
@@ -446,7 +460,7 @@ public class FrmEmpleado extends JFrame {
                             .addComponent(btnEliminar)
                             .addGap(18, 18, 18)
                             .addComponent(cboTipoEmpleado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(88, Short.MAX_VALUE))
+                    .addGap(56, 56, 56))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -462,7 +476,7 @@ public class FrmEmpleado extends JFrame {
     private JTextField txtNombre;
     private JTextField txtEdad;
     private JTextField txtSalario;
-    private JTextField txtBono;
+    private JTextField txtCampoOp;
     private JScrollPane scrollPane1;
     private JTextArea txtArea;
     private JButton btnAgregar;
