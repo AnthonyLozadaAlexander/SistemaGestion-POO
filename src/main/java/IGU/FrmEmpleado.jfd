@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {seq {space :6:6:p, par l {comp label3::l:p::p, comp label2::t:p::p, comp label1::t:p::p, comp label4::t:p::p}, space s:::p, par t {comp txtNombre:::p::p, comp txtEdad:::p::p, comp txtSalario::t:p::p, comp txtBono:::p::p}, space :p:30:p}, seq t {par t {comp btnAgregar::t:p:168:p, comp btnModificar::t:p:168:p, comp btnBuscar::t:p:168:p, comp btnEliminar::t:p:168:p}, space s:::p}}, comp scrollPane1:::p:211:p, space :::p, comp scrollPane2::::567:x, space :::p}, comp separator1::::1004:x}}, seq t {space ::348:x, comp label6:::p::p, space :p:327:p}}"
-			"$verticalGroup": "par l {seq l {space :p:24:p, comp label6:::p::p, space s:::p, comp separator1:::p:26:p, space :::p, par t {seq l {par b {comp txtNombre::b:p::p, comp label1::b:p::p}, space s:::p, par b {comp txtEdad::b:p::p, comp label2::b:p:16:p}, space :p:10:p, par b {comp label3::b:p::p, comp txtSalario::b:p::p}, space s:::p, par l {comp txtBono::l:p::p, comp label4:::p::p}, space :p:33:p, comp btnAgregar:::p::p, space s:::p, comp btnModificar:::p::p, space u:::p, comp btnBuscar:::p::p, space u:::p, comp btnEliminar:::p::p}, par l {comp scrollPane1::l:p:465:p, comp scrollPane2::l:p:465:p}}, space ::100:x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {space :p:6:p, par l {seq l {par l {comp label3::l:p::p, comp label2::t:p::p, comp label1::t:p::p, comp label4::t:p::p}, space s:::p, par t {comp txtNombre:::p::p, comp txtEdad:::p::p, comp txtSalario::t:p::p, comp txtBono:::p::p}}, comp cboTipoEmpleado::t:p:168:p, comp btnAgregar::t:p:168:p, comp btnModificar::t:p:168:p, comp btnBuscar::t:p:168:p, comp btnEliminar::t:p:168:p}, space u:::p, comp scrollPane1:::p:211:p, space :::p, comp scrollPane2::::579:x, space :p:12:p}, comp separator1::::1004:x}}, seq t {space ::348:x, comp label6:::p::p, space :p:327:p}}"
+			"$verticalGroup": "par l {seq l {space :p:24:p, comp label6:::p::p, space s:::p, comp separator1:::p:26:p, space s:::p, par l {comp scrollPane1::l:p:465:p, comp scrollPane2::l:p:465:p, seq {par b {comp txtNombre::b:p::p, comp label1::b:p::p}, space s:::p, par b {comp txtEdad::b:p::p, comp label2::b:p:16:p}, space :p:10:p, par b {comp label3::b:p::p, comp txtSalario::b:p::p}, space s:::p, par l {comp txtBono::l:p::p, comp label4:::p::p}, space :p:27:p, comp btnAgregar:::p::p, space s:::p, comp btnModificar:::p::p, space u:::p, comp btnBuscar:::p::p, space u:::p, comp btnEliminar:::p::p, space s:::p, comp cboTipoEmpleado:::p::p}}, space ::88:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -87,8 +87,18 @@ new FormModel {
 					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector, new java.util.Vector, new java.util.Vector, new java.util.Vector )
 				} )
 			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cboTipoEmpleado"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Seleccione"
+					addElement( "Seleccione" )
+					addElement( "EmpleadoTiempoCompleto" )
+					addElement( "EmpleadoMedioTiempo" )
+				}
+				"font": new java.awt.Font( "CaskaydiaMono NF SemiBold", 0, 16 )
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 186, 26 )
+			"location": new java.awt.Point( 66, 6 )
 			"size": new java.awt.Dimension( 810, 576 )
 		} )
 	}
