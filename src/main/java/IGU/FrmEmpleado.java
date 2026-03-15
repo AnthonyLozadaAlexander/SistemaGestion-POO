@@ -31,6 +31,8 @@ public class FrmEmpleado extends JFrame {
 
     public FrmEmpleado() {
         initComponents();
+        label4.setVisible(false);
+        txtCampoOp.setVisible(false);
         setLocationRelativeTo(null);
         setResizable(false);
         configurarTabla();
@@ -251,6 +253,15 @@ public class FrmEmpleado extends JFrame {
 
     private void controlEmpleados(){
         boolean tipo = cboTipoEmpleado.getSelectedItem().toString().equals("EmpleadoTiempoCompleto");
+        if(cboTipoEmpleado.getSelectedItem().toString().equals("Seleccione")){
+            label4.setVisible(false);
+            txtCampoOp.setVisible(false);
+        }
+        else{
+            label4.setVisible(true);
+            txtCampoOp.setVisible(true);
+        }
+
         if(tipo){
             label4.setText("Bono: ");
         }
@@ -406,16 +417,16 @@ public class FrmEmpleado extends JFrame {
                             .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addComponent(label2)
                                 .addComponent(label3)
-                                .addComponent(label4)
                                 .addComponent(cboTipoEmpleado, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBuscar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAgregar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCampoOp)
-                                .addComponent(txtSalario)
                                 .addComponent(txtEdad)
-                                .addComponent(txtNombre))
+                                .addComponent(txtNombre)
+                                .addComponent(txtSalario)
+                                .addComponent(label4)
+                                .addComponent(txtCampoOp))
                             .addGap(50, 50, 50)
                             .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -438,7 +449,7 @@ public class FrmEmpleado extends JFrame {
                     .addComponent(label1)
                     .addGap(4, 4, 4)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(scrollPane2)
+                        .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                         .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -448,13 +459,13 @@ public class FrmEmpleado extends JFrame {
                             .addComponent(txtEdad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(label3)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
+                            .addGap(18, 18, 18)
                             .addComponent(label4)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtCampoOp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                             .addComponent(btnAgregar)
                             .addGap(18, 18, 18)
                             .addComponent(btnModificar)
