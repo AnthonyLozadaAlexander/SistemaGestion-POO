@@ -15,6 +15,14 @@ public class EmpleadoMedioTiempo extends Empleado{
     public double calcularSalario(){
      return super.calcularSalario() + (horasTrabajadas * tarifaPorHora);
     }
+
+    @Override
+    public String mostrarInfo(){
+        return super.mostrarInfo() + "\n" +
+                "Horas Trabajadas: " + horasTrabajadas + "\n" +
+                "Tarifa por Hora: " + tarifaPorHora + "\n" +
+                "Salario Total: " + calcularSalario();
+    }
 }
 
 
