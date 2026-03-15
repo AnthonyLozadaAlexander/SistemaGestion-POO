@@ -135,7 +135,7 @@ public class FrmEmpleado extends JFrame {
         String nombre = txtNombre.getText();
         int edad = Integer.parseInt(txtEdad.getText().trim());
         double salario = Double.parseDouble(txtSalario.getText().trim());
-        double bono = Double.parseDouble(txtCampoOp.getText().trim());
+
 
         if (edad < 18) {
             JOptionPane.showMessageDialog(this, "La edad debe ser mayor o igual a 18 años", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -149,21 +149,34 @@ public class FrmEmpleado extends JFrame {
             }
         }
 
-        Object[] row = {
-                nombre,
-                edad,
-                salario,
-                bono,
-                salario,
-                salario + bono
-        };
 
-        modelo.addRow(row);
-        tabla.setModel(modelo);
 
-        listEmpleados.add(new EmpleadoTiempoCompleto(nombre, edad, salario, bono));
-        txtArea.append("Empleado agregado: " + nombre + "\n");
-        txtArea.append("Total empleados: " + listEmpleados.size() + "\n");
+        if(cboTipoEmpleado.getSelectedItem().toString().equals("EmpleadoTiempoCompleto")) {
+            double bono = Double.parseDouble(txtCampoOp.getText().trim());
+            EmpleadoTiempoCompleto empTC = new EmpleadoTiempoCompleto(nombre, edad, salario, bono);
+            empTC.calcularSalario();
+            double salarioAnual = empTC.calcularSalario() * 12;
+            listEmpleados.add(empTC);
+            Object[] row = {
+                    nombre,
+                    edad,
+                    salario,
+                    bono,
+                    salario + bono,
+                    salarioAnual
+            };
+
+            modelo.addRow(row);
+            tabla.setModel(modelo);
+            txtArea.append("Empleado agregado: " + nombre + "\n");
+            txtArea.append(empTC.mostrarInfo() + "\n");
+            txtArea.append("Total empleados: " + listEmpleados.size() + "\n");
+
+        }
+        else if(cboTipoEmpleado.getSelectedItem().toString().equals("EmpleadoTiempoCompleto")) {
+            int horasTrabajadas = Integer.parseInt(txtCampoOp.getText().trim());
+            double tarifa = salario / horasTrabajadas;
+        }
 
     }
 
@@ -193,7 +206,6 @@ public class FrmEmpleado extends JFrame {
         modificar();
         mostrar();
         limpiar();
-
     }
 
     private void Eliminar() {
@@ -204,7 +216,7 @@ public class FrmEmpleado extends JFrame {
             return;
         }
 
-        String nom = listEmpleados.get(index).getNombre().toString();
+        String nom = listEmpleados.get(index).getNombre().toString(); // el nombre del empleado a remover
         listEmpleados.remove(index);
 
         modelo.removeRow(index);
