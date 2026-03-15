@@ -109,11 +109,11 @@ public class FrmEmpleado extends JFrame {
         double bono = Double.parseDouble(txtCampoOp.getText().trim());
 
         if (indiceE) {
-            listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
+            listEmpleados.set(indice, new EmpleadoTiempoCompleto(nombre, edad, salario, bono));
         }
 
         if (filaE) {
-            listEmpleados.set(fila, new EmpleadoTiempoCompleto(nombre, edad, bono, salario));
+            listEmpleados.set(fila, new EmpleadoTiempoCompleto(nombre, edad, salario, bono));
         }
 
     }
