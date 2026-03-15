@@ -11,12 +11,14 @@ public class EmpleadoTiempoCompleto extends Empleado {
     public double getBonoAnual(){
         return bonoAnual;
     }
-    public double calcularSalarioAnual() {
+
+    @Override
+    public double calcularSalario() {
         return (salarioBase  + bonoAnual);
     }
 
     @Override
     public String mostrarInfo() {
-        return super.mostrarInfo() + "\n Bono Anual: " + getBonoAnual() + "\n Salario Anual: " + calcularSalarioAnual();
+        return super.mostrarInfo() + "\n Bono Anual: " + getBonoAnual() + "\n Salario Anual: " + calcularSalario();
     }
 }
