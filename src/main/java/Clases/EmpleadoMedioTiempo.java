@@ -1,4 +1,4 @@
-﻿package Clases;
+package Clases;
 
 public class EmpleadoMedioTiempo extends Empleado{
     private int horasTrabajadas;
@@ -9,4 +9,12 @@ public class EmpleadoMedioTiempo extends Empleado{
         this.horasTrabajadas = horasTrabajadas;
         this.tarifaPorHora = tarifaPorHora;
     }
+
+    // sobreescribiendo metodo de la clase padre Empleado
+    @Override
+    public double calcularSalario(){
+     return super.calcularSalario() + (horasTrabajadas * tarifaPorHora);
+    }
 }
+
+
