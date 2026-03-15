@@ -78,7 +78,7 @@ public class FrmEmpleado extends JFrame {
         }
 
         String elegir = JOptionPane.showInputDialog(this, "Ingrese 1 para modificar por Indice o 2 para modificar por Nombre: ");
-
+        // si el usuario elige cancelar, se lanzara un null
         if (elegir == null) {
             return;
         }
