@@ -79,6 +79,10 @@ public class FrmEmpleado extends JFrame {
 
         String elegir = JOptionPane.showInputDialog(this, "Ingrese 1 para modificar por Indice o 2 para modificar por Nombre: ");
 
+        if (elegir == null) {
+            return;
+        }
+
         switch (elegir) {
             case "1" -> {
                 String indiceBuscar = JOptionPane.showInputDialog(this, "Ingrese el indice del empleado a modificar: ");
